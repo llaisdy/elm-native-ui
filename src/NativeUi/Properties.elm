@@ -1,9 +1,14 @@
-module NativeUi.Properties exposing (TextEllipsizeMode(..), PickerMode(..), ScrollViewIndicatorStyle(..), ScrollViewKeyboardDismissMode(..), ScrollViewSnapToAlignment(..), StatusBarBarStyle(..), StatusBarShowHideTransition(..), TabBarItemPositioning(..), key, ellipsizeMode, numberOfLines, selectable, suppressHighlighting, testID, allowFontScaling, accessible, adjustsFontSizeToFit, minimumFontScale, source, sourceUri, defaultSource, defaultSourceUri, showsUserLocation, followUserLocation, showsPointsOfInterest, showsCompass, zoomEnabled, rotateEnabled, pitchEnabled, scrollEnabled, maxDelta, minDelta, active, enabled, mode, prompt, refreshing, title, progressViewOffset, automaticallyAdjustContentInsets, bounces, bouncesZoom, alwaysBounceHorizontal, alwaysBounceVertical, centerContent, horizontal, indicatorStyle, directionalLockEnabled, canCancelContentTouches, keyboardDismissMode, keyboardShouldPersistTaps, maximumZoomScale, minimumZoomScale, pagingEnabled, scrollEventThrottle, scrollsToTop, showsHorizontalScrollIndicator, showsVerticalScrollIndicator, snapToInterval, snapToAlignment, removeClippedSubviews, zoomScale, scrollPerfTag, hidden, animated, translucent, barStyle, networkActivityIndicatorVisible, showHideTransition, itemPositioning, activeOpacity, gestureResponseDistance, enableGestures, statusBarHeight, underlayColor)
+module NativeUi.Properties exposing (TextEllipsizeMode(..), PickerMode(..), ScrollViewIndicatorStyle(..), ScrollViewKeyboardDismissMode(..), ScrollViewSnapToAlignment(..), StatusBarBarStyle(..), StatusBarShowHideTransition(..), TabBarItemPositioning(..), key, ellipsizeMode, numberOfLines, selectable, suppressHighlighting, testID, allowFontScaling, accessible, adjustsFontSizeToFit, minimumFontScale, source, sourceUri, defaultSource, defaultSourceUri, showsUserLocation, followUserLocation, showsPointsOfInterest, showsCompass, zoomEnabled, rotateEnabled, pitchEnabled, scrollEnabled, mapType, maxDelta, minDelta, active, enabled, mode, prompt, refreshing, title, progressViewOffset, automaticallyAdjustContentInsets, bounces, bouncesZoom, alwaysBounceHorizontal, alwaysBounceVertical, centerContent, horizontal, indicatorStyle, directionalLockEnabled, canCancelContentTouches, keyboardDismissMode, keyboardShouldPersistTaps, maximumZoomScale, minimumZoomScale, pagingEnabled, scrollEventThrottle, scrollsToTop, showsHorizontalScrollIndicator, showsVerticalScrollIndicator, snapToInterval, snapToAlignment, removeClippedSubviews, zoomScale, scrollPerfTag, hidden, animated, translucent, barStyle, networkActivityIndicatorVisible, showHideTransition, itemPositioning, activeOpacity, gestureResponseDistance, enableGestures, statusBarHeight, underlayColor)
 
 {-| elm-native-ui Properties
 
-@docs TextEllipsizeMode(..), PickerMode(..), ScrollViewIndicatorStyle(..), ScrollViewKeyboardDismissMode(..), ScrollViewSnapToAlignment(..), StatusBarBarStyle(..), StatusBarShowHideTransition(..), TabBarItemPositioning(..), key, ellipsizeMode, numberOfLines, selectable, suppressHighlighting, testID, allowFontScaling, accessible, adjustsFontSizeToFit, minimumFontScale, source, sourceUri, defaultSource, defaultSourceUri, showsUserLocation, followUserLocation, showsPointsOfInterest, showsCompass, zoomEnabled, rotateEnabled, pitchEnabled, scrollEnabled, maxDelta, minDelta, active, enabled, mode, prompt, refreshing, title, progressViewOffset, automaticallyAdjustContentInsets, bounces, bouncesZoom, alwaysBounceHorizontal, alwaysBounceVertical, centerContent, horizontal, indicatorStyle, directionalLockEnabled, canCancelContentTouches, keyboardDismissMode, keyboardShouldPersistTaps, maximumZoomScale, minimumZoomScale, pagingEnabled, scrollEventThrottle, scrollsToTop, showsHorizontalScrollIndicator, showsVerticalScrollIndicator, snapToInterval, snapToAlignment, removeClippedSubviews, zoomScale, scrollPerfTag, hidden, animated, translucent, barStyle, networkActivityIndicatorVisible, showHideTransition, itemPositioning, activeOpacity, gestureResponseDistance, enableGestures, statusBarHeight, underlayColor
-
+@docs TextEllipsizeMode(..), PickerMode(..), ScrollViewIndicatorStyle(..), ScrollViewKeyboardDismissMode(..), ScrollViewSnapToAlignment(..), StatusBarBarStyle(..), StatusBarShowHideTransition(..), TabBarItemPositioning(..), key, ellipsizeMode, numberOfLines, selectable, suppressHighlighting, testID, allowFontScaling, accessible, adjustsFontSizeToFit, minimumFontScale, source, sourceUri, defaultSource, defaultSourceUri, showsUserLocation, followUserLocation, showsPointsOfInterest, showsCompass, zoomEnabled, rotateEnabled, pitchEnabled, scrollEnabled, mapType, maxDelta, minDelta, active, enabled, mode, prompt, refreshing, title, progressViewOffset, automaticallyAdjustContentInsets, bounces, bouncesZoom, alwaysBounceHorizontal, alwaysBounceVertical, centerContent, horizontal, indicatorStyle, directionalLockEnabled, canCancelContentTouches, keyboardDismissMode, keyboardShouldPersistTaps, maximumZoomScale, minimumZoomScale, pagingEnabled, scrollEventThrottle, scrollsToTop, showsHorizontalScrollIndicator, showsVerticalScrollIndicator, snapToInterval, snapToAlignment, removeClippedSubviews, zoomScale, scrollPerfTag, hidden, animated, translucent, barStyle, networkActivityIndicatorVisible, showHideTransition, itemPositioning, activeOpacity, gestureResponseDistance, enableGestures, statusBarHeight, underlayColor
+        , systemIcon
+        , selected
+        , barTintColor
+        , tintColor
+        , unselectedItemTintColor
+        , unselectedTintColor
 -}
 
 import Json.Encode
@@ -166,6 +171,34 @@ pitchEnabled val =
 scrollEnabled : Bool -> Property msg
 scrollEnabled val =
     property "scrollEnabled" (Json.Encode.bool val)
+
+
+{-| -}
+type MapViewMapType
+    = MapViewMapTypeStandard
+    | MapViewMapTypeSatellite
+    | MapViewMapTypeHybrid
+
+
+{-| -}
+mapType : MapViewMapType -> Property msg
+mapType val =
+    let
+        stringValue =
+            case val of
+                MapViewMapTypeStandard ->
+                    "standard"
+
+                MapViewMapTypeSatellite ->
+                    "satellite"
+
+                MapViewMapTypeHybrid ->
+                    "hybrid"
+
+        jsonValue =
+            Json.Encode.string stringValue
+    in
+        property "mapType" jsonValue
 
 
 {-| -}
@@ -572,6 +605,42 @@ enableGestures val =
 statusBarHeight : Float -> Property msg
 statusBarHeight val =
     property "statusBarHeight" (Json.Encode.float val)
+
+
+{-| -}
+systemIcon : String -> Property msg
+systemIcon val =
+    property "systemIcon" (Json.Encode.string val)
+
+
+{-| -}
+selected : Bool -> Property msg
+selected val =
+    property "selected" (Json.Encode.bool val)
+
+
+{-| -}
+barTintColor : String -> Property msg
+barTintColor val =
+    property "barTintColor" (Json.Encode.string val)
+
+
+{-| -}
+tintColor : String -> Property msg
+tintColor val =
+    property "tintColor" (Json.Encode.string val)
+
+
+{-| -}
+unselectedItemTintColor : String -> Property msg
+unselectedItemTintColor val =
+    property "unselectedItemTintColor" (Json.Encode.string val)
+
+
+{-| -}
+unselectedTintColor : String -> Property msg
+unselectedTintColor val =
+    property "unselectedTintColor" (Json.Encode.string val)
 
 
 {-| -}

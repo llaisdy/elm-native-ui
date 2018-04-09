@@ -1,8 +1,34 @@
-module NativeUi.Elements exposing (text, image, activityIndicator, picker, progressBar, progressView, refreshControl, scrollView, segmentedControl, slider, statusBar, switch, tabBar, textInput, toolbar, touchableHighlight, touchableOpacity, view, navigationCardStack, navigationHeader, navigationHeaderTitle)
+module NativeUi.Elements
+    exposing
+        ( text
+        , image
+        , activityIndicator
+        , mapView
+        , picker
+        , progressBar
+        , progressView
+        , refreshControl
+        , scrollView
+        , segmentedControl
+        , slider
+        , statusBar
+        , switch
+        , tabBar
+        , tabBarIOS
+        , tabBarIOSItem
+        , textInput
+        , toolbar
+        , touchableHighlight
+        , touchableOpacity
+        , view
+        , navigationCardStack
+        , navigationHeader
+        , navigationHeaderTitle
+        )
 
 {-| elm-native-ui Elements
 
-@docs text, image, activityIndicator, picker, progressBar, progressView, refreshControl, scrollView, segmentedControl, slider, statusBar, switch, tabBar, textInput, toolbar, touchableHighlight, touchableOpacity, view, navigationCardStack, navigationHeader, navigationHeaderTitle
+@docs text, image, activityIndicator, mapView, picker, progressBar, progressView, refreshControl, scrollView, segmentedControl, slider, statusBar, switch, tabBar, tabBarIOS, tabBarIOSItem, textInput, toolbar, touchableHighlight, touchableOpacity, view, navigationCardStack, navigationHeader, navigationHeaderTitle
 -}
 
 import NativeUi exposing (Property, Node, customNode, node)
@@ -25,6 +51,12 @@ image =
 activityIndicator : List (Property msg) -> List (Node msg) -> Node msg
 activityIndicator =
     node "ActivityIndicator"
+
+
+{-| -}
+mapView : List (Property msg) -> List (Node msg) -> Node msg
+mapView =
+    node "MapView"
 
 
 {-| -}
@@ -85,6 +117,19 @@ switch =
 tabBar : List (Property msg) -> List (Node msg) -> Node msg
 tabBar =
     node "TabBar"
+
+
+{-| -}
+tabBarIOS : List (Property msg) -> List (Node msg) -> Node msg
+tabBarIOS =
+    -- node "TabBarIOS"
+    customNode "TabBarIOS" Native.NativeUi.Elements.tabBarIOS
+
+
+tabBarIOSItem : List (Property msg) -> List (Node msg) -> Node msg
+tabBarIOSItem =
+    --    node "TabBarIOS.Item"
+    customNode "TabBarIOS.Item" Native.NativeUi.Elements.tabBarIOSItem
 
 
 {-| -}
