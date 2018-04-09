@@ -1,7 +1,7 @@
 {
-    "version": "2.0.0",
+    "version": "2.1.0",
     "summary": "Experimental support for writing React Native powered mobile applications",
-    "repository": "https://github.com/ohanhi/elm-native-ui.git",
+    "repository": "https://github.com/llaisdy/elm-native-ui.git",
     "license": "BSD3",
     "source-directories": [
         "src"
@@ -15,6 +15,7 @@
         "NativeUi.Properties",
         "NativeUi.Events",
         "NativeUi.AsyncStorage",
+        "NativeUi.Linking",
         "NativeUi.ListView",
         "NativeUi.NavigationExperimental",
         "NativeApi.Animated",
